@@ -13,10 +13,16 @@ jobs:
       id-token: write
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
+
+      - name: Upload static files
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: ./
 
       - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v6
-        with:
-          branch: gh-pages        # branch to deploy to
-          folder: ./              # folder containing website files
+        uses: actions/deploy-pages@v2
